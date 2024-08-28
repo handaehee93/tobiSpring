@@ -19,26 +19,26 @@ public class PaymentService {
     // 주문 번호, 외국 통화 종류, 외국 통화 기준 결제 금액을 전달 받고 몇개의 정보를 추가해 리턴 하는 메서드
     public Payment prepare (Long orderId, String currency, BigDecimal foreignCurrencyAmount) throws IOException {
 
-        // 환율 가져오기
+        BigDecimal exRate = getKRWexRate(currency);
+        BigDecimal convertedAmount = foreignCurrencyAmount.multiply(exRate);
+        LocalDateTime validUntil = LocalDateTime.now().plusMinutes(30);
+
+        return new Payment(orderId,currency, foreignCurrencyAmount, exRate, convertedAmount, validUntil);
+    }
+
+    private  BigDecimal getKRWexRate(String currency) throws IOException {
+
         URL url = new URL("https://open.er-api.com/v6/latest/" + currency);
         HttpURLConnection  urlConnection = (HttpURLConnection) url.openConnection();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
         String response = bufferedReader.lines().collect(Collectors.joining());
         bufferedReader.close();
-        System.out.println(response);
 
         ObjectMapper mapper = new ObjectMapper();
         ExrateData exrateData = mapper.readValue(response, ExrateData.class);
-        System.out.println(exrateData);
         BigDecimal exRate = exrateData.rates().get("KRW");
-        System.out.println(exRate);
 
-        BigDecimal convertedAmount = foreignCurrencyAmount.multiply(exRate);
-        System.out.println(convertedAmount);
-
-        LocalDateTime validUntil = LocalDateTime.now().plusMinutes(30);
-
-        return new Payment(orderId,currency, foreignCurrencyAmount, exRate, convertedAmount, validUntil);
+        return exRate;
     }
 
     public static void main(String[] args) throws IOException {
