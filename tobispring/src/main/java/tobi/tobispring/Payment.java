@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 public class Payment {
     private Long orderId;
     private String currency;
+    // 해외 통화를 사용하게 되면 소수점이 발생할 수 있는데 이건 반드시 BigDecimal로 해야 한다. Double은 오차가 발생할 수 있다.
     private BigDecimal foreignCurrencyAmount;
     private BigDecimal exRate;
     private BigDecimal convertedAmount;

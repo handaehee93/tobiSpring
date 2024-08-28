@@ -2,8 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="tobispring.tobispring.main~1" target="17" />
-      <module name="tobispring.tobispring.test~1" target="17" />
+      <module name="tobispring.tobispring.main" target="17" />
+      <module name="tobispring.tobispring.test" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
