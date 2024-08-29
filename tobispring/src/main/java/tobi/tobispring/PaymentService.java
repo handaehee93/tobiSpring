@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
 
      private final ExRateProvider exRateProvider;
 
-    public PaymentService () {
-        this.exRateProvider = new WebApiExRateProvider();
+    public PaymentService (ExRateProvider exRateProvider) {
+        this.exRateProvider = exRateProvider;
     }
 
     // 주문 번호, 외국 통화 종류, 외국 통화 기준 결제 금액을 전달 받고 몇개의 정보를 추가해 리턴 하는 메서드
