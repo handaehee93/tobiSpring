@@ -1,4 +1,6 @@
-package tobi.tobispring;
+package tobi.tobispring.exrate;
+
+import tobi.tobispring.payment.ExRateProvider;
 
 import java.io.IOException;
 import java.math.BigDecimal;

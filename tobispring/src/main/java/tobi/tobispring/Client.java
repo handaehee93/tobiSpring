@@ -2,6 +2,8 @@ package tobi.tobispring;
 
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import tobi.tobispring.payment.Payment;
+import tobi.tobispring.payment.PaymentService;
 
 import java.io.IOException;
 import java.math.BigDecimal;

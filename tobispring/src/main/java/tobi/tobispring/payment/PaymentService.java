@@ -1,24 +1,17 @@
-package tobi.tobispring;
+package tobi.tobispring.payment;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.cglib.core.Local;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.math.BigDecimal;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.time.LocalDateTime;
-import java.util.stream.Collectors;
 
 @Component
  public class PaymentService {
 
+    // 추상화에 의존 ( ExRateProvicer라는 interface에 의존 )
+    // ExRateProvider에 의존하고 있기 때문에 추후에 ExRateProvider라는 인터페이스를 구현하는 구현체가 추가되거나 수정되어도
+    // PaymentSercive의 코드는 수정할 필요가 없다.
      private final ExRateProvider exRateProvider;
 
     public PaymentService (ExRateProvider exRateProvider) {

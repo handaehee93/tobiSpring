@@ -1,6 +1,8 @@
-package tobi.tobispring;
+package tobi.tobispring.exrate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import tobi.tobispring.ExrateData;
+import tobi.tobispring.payment.ExRateProvider;
 
 import java.io.BufferedReader;
 import java.io.IOException;
